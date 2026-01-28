@@ -1,0 +1,17 @@
+{
+  "npc_types": [
+    {
+      "id": "kulturschaffend",
+      "name": "Kulturschaffende",
+      "races": [
+        { "id": "mensch", "name": "Mensch" },
+        { "id": "ork", "name": "Ork" }
+      ]
+    },
+    {
+      "id": "tier",
+      "name": "Tiere",
+      "races": []
+    }
+  ]
+}
