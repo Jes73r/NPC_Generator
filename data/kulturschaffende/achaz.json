@@ -1,0 +1,146 @@
+{
+    "id": "achaz",
+    "name": "Achaz",
+    "variants": [
+            {
+                "id": "allgemein",
+                "name": "Allgemein",
+                "profiles": [
+                    {
+                        "id": "standard",
+                        "name": "Standard",
+                        "base_attributes": {
+                            "MU": 12,
+                            "KL": 12,
+                            "IN": 14,
+                            "CH": 11,
+                            "FF": 12,
+                            "GE": 13,
+                            "KO": 14,
+                            "KK": 12
+                        },
+                    "combat_values": {
+                        "LeP": 33,
+                        "AT_waffenlos": 9,
+                        "PA_waffenlos": 5,
+                        "AT_speer": 9,
+                        "PA_speer": 5,
+                        "FK_wurfspeer": 10
+                    },
+                    "talents": {
+                        "Einschüchtern": 4,
+                        "Kraftakt": 4,
+                        "Schwimmen": 8,
+                        "Selbstbeherrschung": 7,
+                        "Sinnesschärfe": 6,
+                        "Verbergen": 4,
+                        "Willenskraft": 6
+                    }
+                },
+                {
+                    "id": "erfahren",
+                    "name": "Erfahren",
+                    "base_attributes": {
+                        "MU": 12,
+                        "KL": 12,
+                        "IN": 15,
+                        "CH": 11,
+                        "FF": 12,
+                        "GE": 13,
+                        "KO": 14,
+                        "KK": 13
+                    },
+                    "combat_values": {
+                        "LeP": 36,
+                        "AT_waffenlos": 11,
+                        "PA_waffenlos": 6,
+                        "AT_speer": 11,
+                        "PA_speer": 6,
+                        "FK_wurfspeer": 12
+                    },
+                    "skills": {
+                        "Einschüchtern": 6,
+                        "Kraftakt": 6,
+                        "Schwimmen": 10,
+                        "Selbstbeherrschung": 9,
+                        "Sinnesschärfe": 8,
+                        "Verbergen": 6,
+                        "Willenskraft": 8
+                    },
+                    "special_abilities": [
+                        "Finte I (Waffenlos, Speer)",
+                        "Zu Fall bringen (Rimkur, Speer)"
+                    ]
+                },
+                {
+                    "id": "kompetent",
+                    "name": "Kompetent",
+                    "base_attributes": {
+                        "MU": 12,
+                        "KL": 12,
+                        "IN": 16,
+                        "CH": 11,
+                        "FF": 12,
+                        "GE": 13,
+                        "KO": 15,
+                        "KK": 13
+                    },
+                    "combat_values": {
+                        "LeP": 40,
+                        "AT_waffenlos": 13,
+                        "PA_waffenlos": 7,
+                        "AT_speer": 13,
+                        "PA_speer": 7,
+                        "FK_wurfspeer": 14
+                    },
+                    "skills": {
+                        "Einschüchtern": 8,
+                        "Kraftakt": 8,
+                        "Schwimmen": 14,
+                        "Selbstbeherrschung": 11,
+                        "Sinnesschärfe": 10,
+                        "Verbergen": 8,
+                        "Willenskraft": 10
+                    },
+                    "special_abilities": [
+                        "Finte I (Waffenlos, Speer)",
+                        "Zu Fall bringen (Rimkur, Speer)"
+                    ]
+                },
+                {
+                    "id": "achaz_krieger",
+                    "name": "Achaz-Krieger",
+                    "base_attributes": {
+                        "MU": 12,
+                        "KL": 12,
+                        "IN": 15,
+                        "CH": 11,
+                        "FF": 12,
+                        "GE": 14,
+                        "KO": 15,
+                        "KK": 14
+                    },
+                    "combat_values": {
+                        "LeP": 37,
+                        "AW": 9,
+                        "INI": 13,
+                        "AT_waffenlos": 14,
+                        "PA_waffenlos": 7,
+                        "AT_speer": 14,
+                        "PA_speer": 7,
+                        "FK_wurfspeer": 15
+                    },
+                    "talents": {
+                        "Einschüchtern": 8,
+                        "Kraftakt": 6,
+                        "Schwimmen": 10,
+                        "Selbstbeherrschung": 9,
+                        "Sinnesschärfe": 8,
+                        "Verbergen": 6,
+                        "Willenskraft": 8
+                    }
+                }
+            ]
+        }
+    ]
+}

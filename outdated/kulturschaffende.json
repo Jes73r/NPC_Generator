@@ -1,0 +1,169 @@
+{
+  "races": [
+ {
+  "id": "achaz",
+  "name": "Achaz",
+  "profiles": [
+    {
+      "id": "standard",
+      "name": "Standard",
+      "base_attributes": {
+        "MU": 12,
+        "KL": 12,
+        "IN": 14,
+        "CH": 11,
+        "FF": 12,
+        "GE": 13,
+        "KO": 14,
+        "KK": 12
+      },
+      "combat_values": {
+        "LeP": 33,
+        "AT_waffenlos": null,
+        "PA_waffenlos": null,
+        "AT_speer": null,
+        "PA_speer": null,
+        "FK_wurfspeer": null
+      },
+      "talents": {
+        "Einschüchtern": 4,
+        "Kraftakt": 4,
+        "Schwimmen": 8,
+        "Selbstbeherrschung": 7,
+        "Sinnesschärfe": 6,
+        "Verbergen": 4,
+        "Willenskraft": 6
+      }
+    },
+    {
+      "id": "erfahren",
+      "name": "Erfahren",
+      "base_attributes": {
+        "MU": 12,
+        "KL": 12,
+        "IN": 15,
+        "CH": 11,
+        "FF": 12,
+        "GE": 13,
+        "KO": 14,
+        "KK": 13
+      },
+      "combat_values": {
+        "LeP": 36,
+        "AT_waffenlos": 11,
+        "PA_waffenlos": 6,
+        "AT_speer": 11,
+        "PA_speer": 6,
+        "FK_wurfspeer": 12
+      },
+      "skills": {
+        "Einschüchtern": 6,
+        "Kraftakt": 6,
+        "Schwimmen": 10,
+        "Selbstbeherrschung": 9,
+        "Sinnesschärfe": 8,
+        "Verbergen": 6,
+        "Willenskraft": 8
+      },
+      "special_abilities": [
+        "Finte I (Waffenlos, Speer)",
+        "Zu Fall bringen (Rimkur, Speer)"
+      ]
+    },
+    {
+      "id": "kompetent",
+      "name": "Kompetent",
+      "base_attributes": {
+        "MU": 12,
+        "KL": 12,
+        "IN": 16,
+        "CH": 11,
+        "FF": 12,
+        "GE": 13,
+        "KO": 15,
+        "KK": 13
+      },
+      "combat_values": {
+        "LeP": 40,
+        "AT_waffenlos": 13,
+        "PA_waffenlos": 7,
+        "AT_speer": 13,
+        "PA_speer": 7,
+        "FK_wurfspeer": 14
+      },
+      "skills": {
+        "Einschüchtern": 8,
+        "Kraftakt": 8,
+        "Schwimmen": 14,
+        "Selbstbeherrschung": 11,
+        "Sinnesschärfe": 10,
+        "Verbergen": 8,
+        "Willenskraft": 10
+      },
+      "special_abilities": [
+        "Finte I (Waffenlos, Speer)",
+        "Zu Fall bringen (Rimkur, Speer)"
+      ]
+    }
+  ]
+},
+    { "id": "achazkrieger", "name": "Achaz-Krieger" },
+    { "id": "achazhandwerker", "name": "Achazhandwerker" },
+    { "id": "achazherrscher", "name": "Achazherrscher" },
+    { "id": "achazstammeskrieger", "name": "Achazstammeskrieger" },
+    { "id": "affenmensch", "name": "Affenmensch" },
+    { "id": "animisten_der_tapo_tikaute", "name": "Animisten der Tapo-Tikaute" },
+    { "id": "blauer_mahr", "name": "Blauer Mahr" },
+    { "id": "bürgerin", "name": "Bürgerin" },
+    { "id": "diebin", "name": "Diebin" },
+    { "id": "drachenjäger", "name": "Drachenjäger" },
+    { "id": "dunkelelf", "name": "Dunkelelf" },
+    { "id": "elementarist", "name": "Elementarist" },
+    { "id": "erbe_der_gräber_magier", "name": "Erbe der Gräber-Magier" },
+    { "id": "erbe_der_gräber_söldner", "name": "Erbe der Gräber-Söldner" },
+    { "id": "feenritter", "name": "Feenritter" },
+    { "id": "ferkina", "name": "Ferkina" },
+    { "id": "friedloser_pirat", "name": "Friedloser Pirat" },
+    { "id": "gardist", "name": "Gardist" },
+    { "id": "gjalsker_stammeskrieger", "name": "Gjalsker Stammeskrieger" },
+    { "id": "goblin", "name": "Goblin" },
+    { "id": "grolm", "name": "Grolm" },
+    { "id": "hexe", "name": "Hexe" },
+    { "id": "holberker", "name": "Holberker" },
+    { "id": "holberker_minotaurus", "name": "Holberker-Minotaurus" },
+    { "id": "händler", "name": "Händler" },
+    { "id": "krakonier", "name": "Krakonier" },
+    { "id": "kultistin", "name": "Kultistin" },
+    { "id": "leviatan", "name": "Leviatan" },
+    { "id": "mantrake", "name": "Mantra’ke" },
+    { "id": "maru", "name": "Maru" },
+    { "id": "minotaurus", "name": "Minotaurus" },
+    { "id": "necker", "name": "Necker" },
+    { "id": "nekromant", "name": "Nekromant" },
+    { "id": "oger", "name": "Oger" },
+    { "id": "ork", "name": "Ork" },
+    { "id": "orkbauer_grishik", "name": "Orkbauer (Grishik)" },
+    { "id": "orkhandwerker_drasdech", "name": "Orkhandwerker (Drasdech)" },
+    { "id": "orkische_elitekämpfer_okwach", "name": "Orkische Elitekämpfer (Okwach)" },
+    { "id": "orkland_minotaurus", "name": "Orkland-Minotaurus" },
+    { "id": "orkräuber_yurach", "name": "Orkräuber (Yurach)" },
+    { "id": "orksklave_ergoch", "name": "Orksklave/in (Ergoch)" },
+    { "id": "orkstammeskrieger_khurkach", "name": "Orkstammeskrieger / -jäger (Khurkach)" },
+    { "id": "risso", "name": "Risso" },
+    { "id": "räuber", "name": "Räuber" },
+    { "id": "schamane_der_napewanha", "name": "Schamane der Napewanha" },
+    { "id": "shakagra_diverse_varianten", "name": "Shakagra (diverse Varianten)" },
+    { "id": "shakagra_generischer_gegner", "name": "Shakagra (generischer Gegner)" },
+    { "id": "skorpionsschwester", "name": "Skorpionsschwester" },
+    { "id": "stammeskriegerin_der_napewanha", "name": "Stammeskriegerin der Napewanha" },
+    { "id": "tempelherrin", "name": "Tempelherrin" },
+    { "id": "thorwalsche_seefahrerin", "name": "Thorwalsche Seefahrerin" },
+    { "id": "troll", "name": "Troll" },
+    { "id": "wühlschrat", "name": "Wühlschrat" },
+    { "id": "yalaiad_söldner", "name": "Yalaiad-Söldner" },
+    { "id": "ziegenkultist", "name": "Ziegenkultist" },
+    { "id": "zilit", "name": "Zilit" },
+    { "id": "zyklop", "name": "Zyklop" }
+
+  ]
+}

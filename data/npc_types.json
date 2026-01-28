@@ -3,15 +3,12 @@
     {
       "id": "kulturschaffend",
       "name": "Kulturschaffende",
-      "races": [
-        { "id": "mensch", "name": "Mensch" },
-        { "id": "ork", "name": "Ork" }
-      ]
+      "folder": "kulturschaffende.json"
     },
     {
       "id": "tier",
       "name": "Tiere",
-      "races": []
+      "data_file": "tiere.json"
     }
   ]
 }
