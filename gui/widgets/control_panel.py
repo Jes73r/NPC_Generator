@@ -16,25 +16,26 @@ class ControlPanel(QWidget):
     def __init__(self):
         super().__init__()
 
+        # --- NPC Typen laden ---------------------------------------
         npc_types_data = load_json_file("npc_types.json")["npc_types"]
         type_names = [t["name"] for t in npc_types_data]
         self.npc_types_by_id = {t["id"]: t for t in npc_types_data}
 
+        # --- Hauptlayout -------------------------------------------
         layout = QVBoxLayout(self)
-
         title = QLabel("Generator")
         title.setStyleSheet("font-weight: bold; font-size: 16px;")
-        layout.addWidget(title)
 
+        layout.addWidget(title)
+        
+        # --- Layout der NPC Options Box-----------------------------------------------
         group = QGroupBox("NPC Optionen")
         group_layout = QVBoxLayout(group)
-
-        # Lable NPC Typ
         type_label = QLabel("NPC Typ:")
-        group_layout.addWidget(type_label)
 
+        layout.addWidget(group)
 
-        # ComboBox für NPC Typ
+        # --- Typ (Kategorie) ----------------------------------------
         self.type_combo = QComboBox()
         self.type_combo.setEditable(True)
         self.type_combo.setInsertPolicy(QComboBox.NoInsert) # Verhindert neue Einträge       
@@ -53,7 +54,10 @@ class ControlPanel(QWidget):
         line_edit.setCompleter(completer)
         self.type_combo.setCompleter(completer)
 
+        group_layout.addWidget(type_label)
+        group_layout.addWidget(self.type_combo) 
 
+        # --- Rasse (Spezies) ----------------------------------------
         self.race_label = QLabel("Rasse:")
         self.race_combo = QComboBox()
         self.race_combo.setEditable(True)
@@ -62,6 +66,22 @@ class ControlPanel(QWidget):
         self.race_label.hide()
         self.race_combo.hide()
 
+        group_layout.addWidget(self.race_label)
+        group_layout.addWidget(self.race_combo)
+
+        # --- Variante -----------------------------------------------
+        self.variant_label = QLabel("Variante:")
+        self.variant_combo = QComboBox()
+        self.variant_combo.setEditable(True)
+        self.variant_combo.setInsertPolicy(QComboBox.NoInsert)
+
+        self.variant_label.hide()
+        self.variant_combo.hide()
+
+        group_layout.addWidget(self.variant_label)
+        group_layout.addWidget(self.variant_combo)
+
+
         # --- Profile (Erfahrungsgrad) ------------------------------
         self.profile_label = QLabel("Erfahrungsgrad:")
         self.profile_combo = QComboBox()
@@ -69,21 +89,19 @@ class ControlPanel(QWidget):
         self.profile_combo.setInsertPolicy(QComboBox.NoInsert) # Verhindert neue Einträge
 
         self.profile_label.hide()
-        self.profile_combo.hide()           
+        self.profile_combo.hide()   
+
+        group_layout.addWidget(self.profile_label)
+        group_layout.addWidget(self.profile_combo)        
 
         # --- Signal verbinden ---------------------------------------
         self.type_combo.currentIndexChanged.connect(lambda i: on_type_changed(self, i))
+        self.race_combo.currentIndexChanged.connect(lambda i: on_race_changed(self, i))
+        self.variant_combo.currentIndexChanged.connect(lambda i: on_variant_changed(self, i)
+)
+
         self.race_combo.currentIndexChanged.connect(lambda i: on_profile_changed(self, i))
 
-        # Layout hinzufügen
-        group_layout.addWidget(self.type_combo) 
-        layout.addWidget(group)
-
-        group_layout.addWidget(self.race_label)
-        group_layout.addWidget(self.race_combo)
-
-        group_layout.addWidget(self.profile_label)
-        group_layout.addWidget(self.profile_combo)
 
         # Button zum Generieren
         generate_button = QPushButton("NPC generieren")
@@ -127,7 +145,76 @@ def on_type_changed(panel, _):
     completer.setCaseSensitivity(Qt.CaseInsensitive)
     completer.setCompletionMode(QCompleter.InlineCompletion)
     line_edit.setCompleter(completer)
-    panel.race_combo.setCompleter(completer)
+    
+def on_race_changed(panel, _):
+    panel.variant_combo.clear()
+
+    species_id = panel.race_combo.currentData()
+    if not species_id:
+        panel.variant_label.hide()
+        panel.variant_combo.hide()
+        return
+
+    # Spezies-Datei laden (z. B. achaz.json)
+    species_file = f"kulturschaffende/{species_id}.json"
+    species_data = load_json_file(species_file)
+
+    variants = species_data.get("variants", [])
+    if not variants:
+        panel.variant_label.hide()
+        panel.variant_combo.hide()
+        return
+
+    panel.variant_label.show()
+    panel.variant_combo.show()
+    panel.variant_combo.addItem("", None)
+
+    for variant in variants:
+        panel.variant_combo.addItem(variant["name"], variant["id"])
+
+    # Profil-Auswahl zurücksetzen (wichtig!)
+    panel.profile_label.hide()
+    panel.profile_combo.hide()
+    panel.profile_combo.clear()
+
+def on_variant_changed(panel, _):
+    panel.profile_combo.clear()
+
+    species_id = panel.race_combo.currentData()
+    variant_id = panel.variant_combo.currentData()
+
+    if not species_id or not variant_id:
+        panel.profile_label.hide()
+        panel.profile_combo.hide()
+        return
+
+    # Spezies-Datei laden (z. B. achaz.json)
+    species_file = f"kulturschaffende/{species_id}.json"
+    species_data = load_json_file(species_file)
+
+    variants = species_data.get("variants", [])
+    variant = next((v for v in variants if v["id"] == variant_id), None)
+
+    if not variant:
+        panel.profile_label.hide()
+        panel.profile_combo.hide()
+        return
+
+    profiles = variant.get("profiles", [])
+
+    # Nur ein Profil → kein Dropdown anzeigen
+    if len(profiles) <= 1:
+        panel.profile_label.hide()
+        panel.profile_combo.hide()
+        return
+
+    # Mehrere Profile → Dropdown anzeigen
+    panel.profile_label.show()
+    panel.profile_combo.show()
+    panel.profile_combo.addItem("", None)
+
+    for profile in profiles:
+        panel.profile_combo.addItem(profile["name"], profile["id"])
 
 def on_profile_changed(panel, _):
     species_id = panel.race_combo.currentData()
