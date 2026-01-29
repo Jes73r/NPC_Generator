@@ -6,13 +6,16 @@ from PySide6.QtWidgets import (
     QGroupBox,
     QComboBox,
 )
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, Signal
 from PySide6.QtWidgets import QCompleter
 
 import json
 from pathlib import Path
 
 class ControlPanel(QWidget):
+    
+    npc_data_changed = Signal(dict)
+    
     def __init__(self):
         super().__init__()
 
@@ -97,11 +100,13 @@ class ControlPanel(QWidget):
         # --- Signal verbinden ---------------------------------------
         self.type_combo.currentIndexChanged.connect(lambda i: on_type_changed(self, i))
         self.race_combo.currentIndexChanged.connect(lambda i: on_race_changed(self, i))
-        self.variant_combo.currentIndexChanged.connect(lambda i: on_variant_changed(self, i)
-)
-
+        self.variant_combo.currentIndexChanged.connect(lambda i: on_variant_changed(self, i))
         self.race_combo.currentIndexChanged.connect(lambda i: on_profile_changed(self, i))
-
+        
+        self.type_combo.currentIndexChanged.connect(lambda _: emit_npc_data(self))
+        self.race_combo.currentIndexChanged.connect(lambda _: emit_npc_data(self))
+        self.variant_combo.currentIndexChanged.connect(lambda _: emit_npc_data(self))
+        self.profile_combo.currentIndexChanged.connect(lambda _: emit_npc_data(self))
 
         # Button zum Generieren
         generate_button = QPushButton("NPC generieren")
@@ -248,6 +253,10 @@ def on_profile_changed(panel, _):
     line_edit.setCompleter(completer)
     panel.profile_combo.setCompleter(completer)
 
+    npc_data = build_npc_data(panel)
+    panel.npc_data_changed.emit(npc_data)
+
+
 def load_json_file(filename: str):
     base_path = Path(__file__).resolve().parents[2]
     data_path = base_path / "data" / filename
@@ -272,3 +281,144 @@ def load_json_folder(folder_name: str):
             data.append(json.load(f))
 
     return data
+
+def build_npc_data(panel) -> dict:
+    species_id = panel.race_combo.currentData()
+    variant_id = panel.variant_combo.currentData()
+    profile_id = panel.profile_combo.currentData()
+
+    if not species_id or not variant_id:
+        return {}
+
+    # --- Spezies laden -------------------------------------------
+    species_file = f"kulturschaffende/{species_id}.json"
+    species_data = load_json_file(species_file)
+
+    # --- Variante finden -----------------------------------------
+    variant = next(
+        (v for v in species_data["variants"] if v["id"] == variant_id),
+        None
+    )
+    if not variant:
+        return {}
+
+    # --- Basisdaten ----------------------------------------------
+    npc_data = {
+        "meta": species_data.get("meta", {}),
+        "base_attributes": {},
+        "combat_values": {},
+        "talents": {},
+    }
+
+    # --- Profil auswählen ----------------------------------------
+    resolved_profile = resolve_variant(species_data, variant_id, profile_id)
+
+    npc_data["base_attributes"] = resolved_profile.get("base_attributes", {})
+    npc_data["combat_values"] = resolved_profile.get("combat_values", {})
+    npc_data["talents"] = resolved_profile.get("talents", {})
+    npc_data["special_abilities"] = resolved_profile.get("special_abilities", [])
+    npc_data["advantages"] = resolved_profile.get("advantages", [])
+    npc_data["disadvantages"] = resolved_profile.get("disadvantages", [])
+
+
+    return npc_data
+
+def emit_npc_data(panel):
+    npc_data = build_npc_data(panel)
+    if npc_data:
+        panel.npc_data_changed.emit(npc_data)
+
+def deep_merge(base: dict, override: dict) -> dict:
+    result = dict(base)
+
+    for key, value in override.items():
+        if isinstance(value, dict) and isinstance(result.get(key), dict):
+            result[key] = deep_merge(result[key], value)
+        else:
+            result[key] = value
+
+    return result
+
+def resolve_profile(variant: dict, profile_id: str) -> dict:
+    profiles = {p["id"]: p for p in variant.get("profiles", [])}
+    profile = profiles.get(profile_id)
+
+    if not profile:
+        return {}
+
+    # --- Basisprofil bestimmen -----------------------------------
+    if "inherits" in profile:
+        base_profile = resolve_profile(variant, profile["inherits"])
+    else:
+        base_profile = profile
+
+    # --- Modifier anwenden ---------------------------------------
+    modifiers = profile.get("modifiers", {})
+    resolved = deep_merge(base_profile, modifiers)
+
+    # --- Zusätzliche Sonderfertigkeiten ---------------------------
+    if "special_abilities_add" in profile:
+        resolved.setdefault("special_abilities", [])
+        resolved["special_abilities"] += profile["special_abilities_add"]
+
+    return resolved
+
+def resolve_variant(species_data: dict, variant_id: str, profile_id: str | None) -> dict:
+    variants = {v["id"]: v for v in species_data.get("variants", [])}
+    variant = variants.get(variant_id)
+
+    if not variant:
+        return {}
+
+    # --- Inheritance ---------------------------------------------
+    if "inherits" in variant:
+        base_variant_id = variant["inherits"].get("variant")
+        base_profile_id = variant["inherits"].get("profile")
+
+        base_variant = variants.get(base_variant_id)
+        if not base_variant:
+            return {}
+
+        resolved_profile = resolve_profile(base_variant, base_profile_id)
+        resolved = dict(resolved_profile)
+
+        # Variant-Modifier anwenden
+        modifiers = variant.get("modifiers", {})
+        resolved = deep_merge(resolved, modifiers)
+
+        # Zusätzliche Sonderfertigkeiten
+        if "special_abilities_add" in variant:
+            resolved.setdefault("special_abilities", [])
+            resolved["special_abilities"] += variant["special_abilities_add"]
+
+        # Verhalten überschreiben
+        if "behavior_override" in variant:
+            resolved["behavior"] = variant["behavior_override"]
+
+        return resolved
+
+    # --- Keine Inheritance → normale Variante --------------------
+    profiles = variant.get("profiles", [])
+    resolved_profile = resolve_profile(variant, profile_id)
+    return resolved_profile
+
+#def _emit_test_data(panel, _):
+#       panel.npc_data_changed.emit({
+#           "meta": {
+#               "Rasse": "Achaz",
+#               "Variante": "Achaz-Krieger"
+#           },
+#           "base_attributes": {
+#               "MU": 12,
+#               "KL": 12,
+#               "IN": 14
+#           },
+#           "combat_values": {
+#               "LeP": 33,
+#               "INI": "13+1W6"
+#           },
+#           "talents": {
+#               "Schwimmen": 8,
+#               "Sinnesschärfe": 6
+#           }
+#           })

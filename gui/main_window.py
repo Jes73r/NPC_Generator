@@ -25,3 +25,6 @@ class MainWindow(QMainWindow):
         splitter.setStretchFactor(1, 3)
 
         self.setCentralWidget(splitter)
+        
+        self.control_panel.npc_data_changed.connect(self.npc_preview.set_npc_data)
+
