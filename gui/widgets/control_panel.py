@@ -24,6 +24,10 @@ class ControlPanel(QWidget):
         type_names = [t["name"] for t in npc_types_data]
         self.npc_types_by_id = {t["id"]: t for t in npc_types_data}
 
+        print("Verfügbare NPC Typen:")
+        for t in npc_types_data:
+            print(f" - {t['name']} ({t['id']})")
+
         # --- Hauptlayout -------------------------------------------
         layout = QVBoxLayout(self)
         title = QLabel("Generator")
@@ -117,18 +121,21 @@ class ControlPanel(QWidget):
 # --- Funktionen ---------------------------------------------#
 
 def on_type_changed(panel, _):
-    panel.race_combo.clear()
-
+    reset_all_submenus(panel)
+    
     npc_type_id = panel.type_combo.currentData()
     if not npc_type_id:
-        panel.race_label.hide()
-        panel.race_combo.hide()
         return
 
-    npc_type = panel.npc_types_by_id.get(npc_type_id)
-    if not npc_type:
-        return
+    if npc_type_id == "kulturschaffend":
+        handle_kulturschaffende(panel)
 
+    elif npc_type_id == "tier":
+        handle_tiere(panel)    
+    
+def handle_kulturschaffende(panel):
+    panel.race_combo.clear()
+    
     species_data = load_json_folder("kulturschaffende")
     if not species_data:
         panel.race_label.hide()
@@ -150,7 +157,26 @@ def on_type_changed(panel, _):
     completer.setCaseSensitivity(Qt.CaseInsensitive)
     completer.setCompletionMode(QCompleter.InlineCompletion)
     line_edit.setCompleter(completer)
+
+def handle_tiere(panel):
+    panel.race_combo.clear()
+
+    animals = load_json_folder("tiere")
+    if not animals:
+        panel.race_label.hide()
+        panel.race_combo.hide()
+        return
     
+    panel.race_label.setText("Tierart")
+    panel.race_label.show()
+    panel.race_combo.show()
+
+    panel.race_combo.addItem("", None)
+
+    for animal_list in animals:
+        for animal in animal_list:
+            panel.race_combo.addItem(animal["name"], animal["id"])
+
 def on_race_changed(panel, _):
     panel.variant_combo.clear()
 
@@ -255,7 +281,6 @@ def on_profile_changed(panel, _):
 
     npc_data = build_npc_data(panel)
     panel.npc_data_changed.emit(npc_data)
-
 
 def load_json_file(filename: str):
     base_path = Path(__file__).resolve().parents[2]
@@ -401,6 +426,14 @@ def resolve_variant(species_data: dict, variant_id: str, profile_id: str | None)
     profiles = variant.get("profiles", [])
     resolved_profile = resolve_profile(variant, profile_id)
     return resolved_profile
+
+def reset_all_submenus(panel):
+    panel.race_label.hide()
+    panel.race_combo.hide()
+    panel.variant_label.hide()
+    panel.variant_combo.hide()
+    panel.profile_label.hide()
+    panel.profile_combo.hide()
 
 #def _emit_test_data(panel, _):
 #       panel.npc_data_changed.emit({

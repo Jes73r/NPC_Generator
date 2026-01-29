@@ -3,12 +3,12 @@
     {
       "id": "kulturschaffend",
       "name": "Kulturschaffende",
-      "folder": "kulturschaffende.json"
+      "folder": "Kulturschaffende.json"
     },
     {
       "id": "tier",
       "name": "Tiere",
-      "data_file": "tiere.json"
+      "folder": "Tiere.json"
     }
   ]
 }
