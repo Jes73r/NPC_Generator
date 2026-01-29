@@ -1,0 +1,445 @@
+{
+    "id": "achaz",
+    "name": "Achaz",
+    "variants": [
+            {
+              "id": "allgemein",
+              "name": "Achaz",
+              "meta": {
+                "size": "1,80–2,00 Schritt",
+                "weight": "60–70 Stein",
+                "size_category": "mittel",
+                "type": ["Kulturschaffender", "humanoid"],
+                "loot": "individuell, z. B. Waffen",
+                "count": "1 oder 1W6+2 (Trupp) oder 3W6+6 (Sippe)"
+              },
+              "special_rules": {
+                "kältestarre": "Statt Kälteschaden zu erleiden, versetzt sich der Körper eines Achaz automatisch in eine Kältestarre. Er bekommt jede Minute bei Temperaturen, in denen er Kälteschaden erleiden würde, 1 Stufe Paralyse und bei der IV. Stufe zusätzlich den Status Bewusstlos. In der Kältestarre kann er 1W20 Jahre überleben. Gelangt er wieder in eine wärmere Gegend, so bauen sich die Stufen Paralyse alle volle 30 Minuten um 1 Stufe ab. Ab Stufe III verliert er den Status Bewusstlos."
+              },
+              "profiles": [
+                {
+                  "id": "standard",
+                  "name": "Standard",
+                  "base_attributes": {
+                    "MU": 12,
+                    "KL": 12,
+                    "IN": 14,
+                    "CH": 11,
+                    "FF": 12,
+                    "GE": 13,
+                    "KO": 14,
+                    "KK": 12
+                  },
+                  "combat_values": {
+                    "LeP": 33,
+                    "AW": 7,
+                    "INI": "13+1W6",
+                    "SK": 2,
+                    "ZK": 2,
+                    "GS": 8,
+                    "actions": 1,
+                
+                    "AT_waffenlos": 9,
+                    "PA_waffenlos": 5,
+                    "TP_waffenlos": "1W6",
+                    "RW_waffenlos": "kurz",
+                
+                    "AT_rimkur": 9,
+                    "PA_rimkur": 3,
+                    "TP_rimkur": "1W6+5",
+                    "RW_rimkur": "lang",
+                
+                    "AT_speer": 9,
+                    "PA_speer": 5,
+                    "TP_speer": "1W6+4",
+                    "RW_speer": "lang",
+                
+                    "FK_wurfspeer": 10,
+                    "LZ_wurfspeer": 2,
+                    "TP_wurfspeer": "2W6+2",
+                    "RW_wurfspeer": "5/25/40",
+                
+                    "RS": 1,
+                    "BE": 0
+                  },
+                  "talents": {
+                    "Einschüchtern": 4,
+                    "Handel": 3,
+                    "Klettern": 3,
+                    "Körperbeherrschung": 8,
+                    "Kraftakt": 4,
+                    "Menschenkenntnis": 3,
+                    "Schwimmen": 8,
+                    "Selbstbeherrschung": 7,
+                    "Sinnesschärfe": 6,
+                    "Überreden": 3,
+                    "Verbergen": 4,
+                    "Willenskraft": 6
+                  },
+                  "special_abilities": [
+                    "Aufmerksamkeit"
+                  ],
+                  "advantages": [
+                    "Begabung (Schwimmen)",
+                    "Beidhändig",
+                    "Dunkelsicht I",
+                    "Natürlicher Rüstungsschutz (RS 1)",
+                    "Richtungssinn"
+                  ],
+                  "disadvantages": [
+                    "Angst vor Dunkelheit I",
+                    "Eingeschränkter Sinn (Gehör)",
+                    "Unfähig (Singen, Musizieren)"
+                  ],
+                  "behavior": {
+                    "combat": "Achaz kämpfen nur, wenn sie dazu gezwungen werden, ziehen sich aber bei der erstbesten Gelegenheit zurück. Wenn sie keinen anderen Ausweg sehen, sind sie bereit länger zu kämpfen und setzen Wurfspeere aus dem Hinterhalt ein.",
+                    "flee_at_lep_percent": 50,
+                    "pain_thresholds": [25, 17, 8, 5]
+                  }
+                },
+            
+                {
+                  "id": "erfahren",
+                  "name": "Erfahren",
+                  "inherits": "standard",
+                  "modifiers": {
+                    "base_attributes": {
+                      "IN": 15,
+                      "KK": 13
+                    },
+                    "combat_values": {
+                      "LeP": 36,
+                      "AT_waffenlos": 11,
+                      "PA_waffenlos": 6,
+                      "AT_speer": 11,
+                      "PA_speer": 6,
+                      "FK_wurfspeer": 12
+                    },
+                    "talents": {
+                      "Einschüchtern": 6,
+                      "Kraftakt": 6,
+                      "Schwimmen": 10,
+                      "Selbstbeherrschung": 9,
+                      "Sinnesschärfe": 8,
+                      "Verbergen": 6,
+                      "Willenskraft": 8
+                    }
+                  },
+                  "special_abilities_add": [
+                    "Finte I (Waffenlos, Rimkur, Speer)",
+                    "Zu Fall bringen (Rimkur, Speer)"
+                  ]
+                },
+            
+                {
+                  "id": "kompetent",
+                  "name": "Kompetent",
+                  "inherits": "standard",
+                  "modifiers": {
+                    "base_attributes": {
+                      "IN": 16,
+                      "KO": 15,
+                      "KK": 13
+                    },
+                    "combat_values": {
+                      "LeP": 40,
+                      "AT_waffenlos": 13,
+                      "PA_waffenlos": 7,
+                      "AT_speer": 13,
+                      "PA_speer": 7,
+                      "FK_wurfspeer": 14
+                    },
+                    "talents": {
+                      "Einschüchtern": 8,
+                      "Kraftakt": 8,
+                      "Schwimmen": 14,
+                      "Selbstbeherrschung": 11,
+                      "Sinnesschärfe": 10,
+                      "Verbergen": 8,
+                      "Willenskraft": 10
+                    }
+                  },
+                  "special_abilities_add": [
+                    "Finte I (Waffenlos, Rimkur, Speer)",
+                    "Zu Fall bringen (Rimkur, Speer)"
+                  ]
+                }
+              ]
+            }
+    ,
+            {
+  "id": "achaz_krieger",
+  "name": "Achaz-Krieger",
+  "base_attributes": {
+    "MU": 12,
+    "KL": 12,
+    "IN": 14,
+    "CH": 11,
+    "FF": 12,
+    "GE": 13,
+    "KO": 14,
+    "KK": 12
+  },
+  "combat_values": {
+    "LeP": 33,
+    "AW": 7,
+    "INI": "13+1W6",
+    "SK": 2,
+    "ZK": 2,
+    "GS": 8,
+
+    "AT_waffenlos": 11,
+    "PA_waffenlos": 6,
+    "TP_waffenlos": "1W6",
+    "RW_waffenlos": "kurz",
+
+    "AT_rimkur": 11,
+    "PA_rimkur": 4,
+    "TP_rimkur": "1W6+5",
+    "RW_rimkur": "lang",
+
+    "FK_wurfspeer": 10,
+    "PA_wurfspeer": 5,
+    "TP_wurfspeer": "2W6+2",
+    "RW_wurfspeer": "5/25/40",
+
+    "RS": 1,
+    "BE": 0
+  },
+  "talents": {
+    "Einschüchtern": 6,
+    "Klettern": 3,
+    "Körperbeherrschung": 8,
+    "Kraftakt": 4,
+    "Schwimmen": 8,
+    "Selbstbeherrschung": 7,
+    "Sinnesschärfe": 6,
+    "Verbergen": 4,
+    "Willenskraft": 6
+  },
+  "special_abilities": [
+    "Aufmerksamkeit",
+    "Finte I (Waffenlos, Rimkur)"
+  ],
+  "advantages": [
+    "Begabung (Schwimmen)",
+    "Beidhändig",
+    "Dunkelsicht I"
+  ],
+  "disadvantages": [
+    "Angst vor Dunkelheit I",
+    "Eingeschränkter Sinn (Gehör)"
+  ],
+  "behavior": {
+    "combat": "Die Achaz-Krieger drängen auf die Verteidiger ein und versuchen, ihre Linie zu durchbrechen, um die Schamanen anzugreifen.",
+    "flee_at_lep_percent": 50,
+    "pain_thresholds": [25, 17, 8, 5]
+  }
+},
+
+        {
+            "id": "achaz_handwerker",
+            "name": "Achazhandwerker",
+            "base_attributes": {
+                "MU": 12,
+                "KL": 12,
+                "IN": 14,
+                "CH": 11,
+                "FF": 13,
+                "GE": 13,
+                "KO": 14,
+                "KK": 12
+            },
+            "combat_values": {
+                "LeP": 36,
+                "AW": 7,
+                "INI": "13+1W6",
+                "AT_waffenlos": 10,
+                "PA_waffenlos": 6,
+                "TP_waffenlos": "1W6",
+                "AT_speer": 10,
+                "PA_speer": 6,
+                "TP_speer": "1W6+4",
+                "RS": 1,
+                "BE": 0,
+                "SK": 2,
+                "ZK": 2,
+                "GS": 8
+            },
+            "talents": {
+                "Einschüchtern": 3,
+                "Körperbeherrschung": 4,
+                "Kraftakt": 4,
+                "Schwimmen": 8,
+                "Selbstbeherrschung": 3,
+                "Sinnesschärfe": 3,
+                "Verbergen": 6,
+                "Willenskraft": 4
+            },
+            "special_abilities": [
+            "Verteidigungshaltung (Waffenlos, Speer)"
+            ],
+            "advantages": [
+                "Begabung (Schwimmen)",
+                "Dunkelsicht I",
+                "Natürlicher Rüstungsschutz (RS 1)",
+                "Zusätzliche Gliedmaße (Schwanz)"
+            ],
+            "disadvantages": [
+                "Angst vor Dunkelheit I",
+                "Eingeschränkter Sinn (Gehör)",
+                "Kältestarre",
+                "Unfähig (Singen und Musizieren)"
+            ]
+        },
+        {
+        "id": "achaz_herrscher",
+        "name": "Achazherrscher",
+        "base_attributes": {
+          "MU": 13,
+          "KL": 13,
+          "IN": 16,
+          "CH": 12,
+          "FF": 12,
+          "GE": 13,
+          "KO": 16,
+          "KK": 13
+        },
+        "combat_values": {
+          "LeP": 44,
+          "AW": 7,
+          "INI": "13+1W6",
+          "SK": 3,
+          "ZK": 3,
+          "GS": 8,
+          "AT_waffenlos": 15,
+          "PA_waffenlos": 8,
+          "TP_waffenlos": "1W6",
+          "RW_waffenlos": "kurz",
+          "AT_speer": 15,
+          "PA_speer": 8,
+          "TP_speer": "1W6+4",
+          "RW_speer": "lang",
+          "RS": 1,
+          "BE": 0
+        },
+        "talents": {
+          "Einschüchtern": 10,
+          "Körperbeherrschung": 8,
+          "Kraftakt": 8,
+          "Schwimmen": 12,
+          "Selbstbeherrschung": 7,
+          "Sinnesschärfe": 7,
+          "Verbergen": 10,
+          "Willenskraft": 8
+        },
+        "special_abilities": [
+          "Aufmerksamkeit",
+          "Finte I (Waffenlos, Speer)",
+          "Präziser Schuss/Wurf I (Wurfspeer)",
+          "Wuchtschlag I (Waffenlos, Speer)",
+          "Zu Fall bringen (Speer)"
+        ],
+        "advantages": [
+          "Begabung (Schwimmen)",
+          "Dunkelsicht I",
+          "Natürlicher Rüstungsschutz (RS 1)",
+          "Richtungssinn",
+          "Zusätzliche Gliedmaße (Schwanz)"
+        ],
+        "disadvantages": [
+          "Angst vor Dunkelheit I",
+          "Eingeschränkter Sinn (Gehör)",
+          "Kältestarre",
+          "Unfähig (Singen und Musizieren)"
+        ],
+        "behavior": {
+          "combat": "Ein Achazherrscher geht Kämpfen aus dem Weg und verlässt sich auf seine Leibgarde, auch wenn er sich in der Regel körperlich mit den meisten Gegnern messen kann.",
+          "flee_at_lep_percent": 50,
+          "pain_thresholds": [33, 22, 11, 5]
+        }
+    },
+    {
+      "id": "achaz_stammeskrieger",
+      "name": "Achazstammeskrieger",
+      "base_attributes": {
+        "MU": 13,
+        "KL": 12,
+        "IN": 15,
+        "CH": 11,
+        "FF": 12,
+        "GE": 13,
+        "KO": 15,
+        "KK": 13
+      },
+      "combat_values": {
+        "LeP": 40,
+        "AW": 6,
+        "INI": "13+1W6",
+        "SK": 3,
+        "ZK": 3,
+        "GS": 7,
+
+        "AT_waffenlos": 12,
+        "PA_waffenlos": 7,
+        "TP_waffenlos": "1W6",
+        "RW_waffenlos": "kurz",
+
+        "AT_rimkur": 12,
+        "PA_rimkur": 5,
+        "TP_rimkur": "1W6+5",
+        "RW_rimkur": "lang",
+
+        "AT_speer": 12,
+        "PA_speer": 7,
+        "TP_speer": "1W6+4",
+        "RW_speer": "lang",
+
+        "FK_wurfspeer": 13,
+        "LZ_wurfspeer": 2,
+        "TP_wurfspeer": "2W6+2",
+        "RW_wurfspeer": "5/25/40",
+
+        "RS": 4,
+        "BE": 0
+      },
+      "talents": {
+        "Einschüchtern": 8,
+        "Körperbeherrschung": 6,
+        "Kraftakt": 6,
+        "Schwimmen": 10,
+        "Selbstbeherrschung": 5,
+        "Sinnesschärfe": 5,
+        "Verbergen": 8,
+        "Willenskraft": 6
+      },
+      "special_abilities": [
+        "Aufmerksamkeit",
+        "Belastungsgewöhnung I",
+        "Präziser Schuss/Wurf I (Wurfspeer)",
+        "Wuchtschlag I (Waffenlos, Rimkur, Speer)"
+      ],
+      "advantages": [
+        "Begabung (Schwimmen)",
+        "Dunkelsicht I",
+        "Natürlicher Rüstungsschutz (RS 1)",
+        "Richtungssinn",
+        "Zusätzliche Gliedmaße (Schwanz)"
+      ],
+      "disadvantages": [
+        "Angst vor Dunkelheit I",
+        "Eingeschränkter Sinn (Gehör)",
+        "Kältestarre",
+        "Unfähig (Singen und Musizieren)"
+      ],
+      "behavior": {
+        "combat": "Ein Achazstammeskrieger versucht zunächst seinen Gegner aus dem Hinterhalt mit einem Wurfspeer anzugreifen und nutzt dazu den Präzisen Schuss/Wurf. Im darauffolgenden Nahkampf kämpft der Krieger so, dass sein Reichweitenvorteil zur Geltung kommt. Wuchtschläge setzt er nur selten ein und dann fast nur, wenn sein Gegner sehr gut gepanzert ist.",
+        "flee_at_lep_percent": 50,
+        "pain_thresholds": [30, 20, 10, 5]
+      }
+    }
+
+    ]
+}
+    
+

@@ -1,56 +1,127 @@
 {
     "id": "achaz",
     "name": "Achaz",
-    "variants": [
-            {
-                "id": "allgemein",
-                "name": "Achaz",
-                "profiles": [
+    "meta" :
+    {
+        "size": "1,80–2,00 Schritt",
+        "weight": "60–70 Stein",
+        "size_category": "mittel",
+        "type": ["Kulturschaffender", "humanoid"],
+        "loot": "individuell, z. B. Waffen",
+        "count": "1 oder 1W6+2 (Trupp) oder 3W6+6 (Sippe)"           
+    },
+    "behavior": 
+    {
+        "combat": "Achaz kämpfen nur, wenn sie dazu gezwungen werden, ziehen sich aber bei der erstbesten Gelegenheit zurück. Wenn sie keinen anderen Ausweg sehen, sind sie bereit länger zu kämpfen und setzen Wurfspeere aus dem Hinterhalt ein.",
+        "flee_at_lep_percent": 50,
+        "pain_thresholds": [25, 17, 8, 5]
+    }, 
+    "special_rules": 
+    {
+        "kältestarre": "Statt Kälteschaden zu erleiden, versetzt sich der Körper eines Achaz automatisch in eine Kältestarre. Er bekommt jede Minute bei Temperaturen, in denen er Kälteschaden erleiden würde, 1 Stufe Paralyse und bei der IV. Stufe zusätzlich den Status Bewusstlos. In der Kältestarre kann er 1W20 Jahre überleben. Gelangt er wieder in eine wärmere Gegend, so bauen sich die Stufen Paralyse alle volle 30 Minuten um 1 Stufe ab. Ab Stufe III verliert er den Status Bewusstlos."
+    },
+    "variants":
+    [
+        {
+            "id": "allgemein",
+            "name": "Achaz",
+
+            "profiles": 
+            [   
+                {
+                    "id": "standard",
+                    "name": "Standard",
+                    "base_attributes": 
                     {
-                        "id": "standard",
-                        "name": "Standard",
-                        "base_attributes": {
-                            "MU": 12,
-                            "KL": 12,
-                            "IN": 14,
-                            "CH": 11,
-                            "FF": 12,
-                            "GE": 13,
-                            "KO": 14,
-                            "KK": 12
-                        },
-                        "combat_values": {
-                            "LeP": 33,
-                            "AT_waffenlos": 9,
-                            "PA_waffenlos": 5,
-                            "AT_speer": 9,
-                            "PA_speer": 5,
-                            "FK_wurfspeer": 10
+                        "MU": 12,
+                        "KL": 12,
+                        "IN": 14,
+                        "CH": 11,
+                        "FF": 12,
+                        "GE": 13,
+                        "KO": 14,
+                        "KK": 12
                     },
-                        "skills": {
-                            "Einschüchtern": 4,
-                            "Kraftakt": 4,
-                            "Schwimmen": 8,
-                            "Selbstbeherrschung": 7,
-                            "Sinnesschärfe": 6,
-                            "Verbergen": 4,
-                            "Willenskraft": 6
-                    }
+                    "combat_values": 
+                    {
+                        "LeP": 33,
+                        "AW": 7,
+                        "INI": "13+1W6",
+                        "SK": 2,
+                        "ZK": 2,
+                        "GS": 8,
+                        "actions": 1,
+                
+                        "AT_waffenlos": 9,
+                        "PA_waffenlos": 5,
+                        "TP_waffenlos": "1W6",
+                        "RW_waffenlos": "kurz",
+                        
+                        "AT_rimkur": 9,
+                        "PA_rimkur": 3,
+                        "TP_rimkur": "1W6+5",
+                        "RW_rimkur": "lang",
+                        
+                        "AT_speer": 9,
+                        "PA_speer": 5,
+                        "TP_speer": "1W6+4",
+                        "RW_speer": "lang",
+                        
+                        "FK_wurfspeer": 10,
+                        "LZ_wurfspeer": 2,
+                        "TP_wurfspeer": "2W6+2",
+                        "RW_wurfspeer": "5/25/40",
+                        
+                        "RS": 1,
+                        "BE": 0
+                    },
+                    "talents": 
+                    {
+                        "Einschüchtern": 4,
+                        "Handel": 3,
+                        "Klettern": 3,
+                        "Körperbeherrschung": 8,
+                        "Kraftakt": 4,
+                        "Menschenkenntnis": 3,
+                        "Schwimmen": 8,
+                        "Selbstbeherrschung": 7,
+                        "Sinnesschärfe": 6,
+                        "Überreden": 3,
+                        "Verbergen": 4,
+                        "Willenskraft": 6
+                    },
+                    "special_abilities": 
+                    [
+                        "Aufmerksamkeit"
+                    ],
+                    "advantages": 
+                    [
+                        "Begabung (Schwimmen)",
+                        "Beidhändig",
+                        "Dunkelsicht I",
+                        "Natürlicher Rüstungsschutz (RS 1)",
+                        "Richtungssinn"
+                    ],
+                    "disadvantages": 
+                    [
+                        "Angst vor Dunkelheit I",
+                        "Eingeschränkter Sinn (Gehör)",
+                        "Unfähig (Singen, Musizieren)"
+                    ]
                 },
                 {
                     "id": "erfahren",
-                    "name": "Erfahren",
-                    "base_attributes": {
-                            "MU": 12,
-                            "KL": 12,
+                    "name": "Erfahrener Achaz",
+                    "inherits": "standard",
+                    "modifiers":
+                    {
+                        "base_attributes":
+                        {
                             "IN": 15,
-                            "CH": 11,
-                            "FF": 12,
-                            "GE": 13,
-                            "KO": 14,
-                            "KK": 13
+                            "KK": 13                                                 
                         },
-                        "combat_values": {
+                        "combat_values":
+                        {
                             "LeP": 36,
                             "AT_waffenlos": 11,
                             "PA_waffenlos": 6,
@@ -58,34 +129,35 @@
                             "PA_speer": 6,
                             "FK_wurfspeer": 12
                         },
-                    "skills": {
-                        "Einschüchtern": 6,
-                        "Kraftakt": 6,
-                        "Schwimmen": 10,
-                        "Selbstbeherrschung": 9,
-                        "Sinnesschärfe": 8,
-                        "Verbergen": 6,
-                        "Willenskraft": 8
+                        "talents": 
+                        {
+                            "Einschüchtern": 6,
+                            "Kraftakt": 6,
+                            "Schwimmen": 10,
+                            "Selbstbeherrschung": 9,
+                            "Sinnesschärfe": 8,
+                            "Verbergen": 6,
+                            "Willenskraft": 8
+                        }
                     },
-                    "special_abilities": [
-                        "Finte I (Waffenlos, Speer)",
+                    "special_abilities_add":
+                    [
+                        "Finte I (Waffenlos, Rimkur, Speer)",
                         "Zu Fall bringen (Rimkur, Speer)"
                     ]
                 },
                 {
                     "id": "kompetent",
-                    "name": "Kompetent",
-                    "base_attributes": {
-                        "MU": 12,
-                        "KL": 12,
+                    "name": "Kompetenter Achaz",
+                    "inherits": "standard",
+                    "modifiers":
+                    {
                         "IN": 16,
-                        "CH": 11,
-                        "FF": 12,
-                        "GE": 13,
                         "KO": 15,
                         "KK": 13
                     },
-                    "combat_values": {
+                    "combat_values":
+                    {
                         "LeP": 40,
                         "AT_waffenlos": 13,
                         "PA_waffenlos": 7,
@@ -93,7 +165,8 @@
                         "PA_speer": 7,
                         "FK_wurfspeer": 14
                     },
-                    "skills": {
+                    "talents": 
+                    {
                         "Einschüchtern": 8,
                         "Kraftakt": 8,
                         "Schwimmen": 14,
@@ -102,47 +175,41 @@
                         "Verbergen": 8,
                         "Willenskraft": 10
                     },
-                    "special_abilities": [
-                        "Finte I (Waffenlos, Speer)",
+                    "special_abilities_add":
+                    [
+                        "Finte I (Waffenlos, Rimkur, Speer)",
                         "Zu Fall bringen (Rimkur, Speer)"
                     ]
                 }
             ]
-        },
-        {
+         },
+         {
             "id": "achaz_krieger",
             "name": "Achaz-Krieger",
-            "base_attributes": {
-                "MU": 12,
-                "KL": 12,
-                "IN": 15,
-                "CH": 11,
-                "FF": 12,
-                "GE": 14,
-                "KO": 15,
-                "KK": 14
+            "inherits": 
+            {
+                "variant": "allgemein",
+                "profile": "standard"
             },
-            "combat_values": {
-                "LeP": 37,
-                "AW": 9,
-                "INI": 13,
-                "AT_waffenlos": 14,
-                "PA_waffenlos": 7,
-                "AT_speer": 14,
-                "PA_speer": 7,
-                "FK_wurfspeer": 15
+            "modifiers": 
+            {
+                "combat_values": 
+                {
+                    "AT_waffenlos": 11,
+                    "PA_waffenlos": 6,
+                    "AT_rimkur": 11,
+                    "PA_rimkur": 4,
+                    "FK_wurfspeer": 10
+                }
             },
-            "skills": {
-                "Einschüchtern": 8,
-                "Kraftakt": 6,
-                "Schwimmen": 10,
-                "Selbstbeherrschung": 9,
-                "Sinnesschärfe": 8,
-                "Verbergen": 6,
-                "Willenskraft": 8
+            "special_abilities_add": 
+            [
+                "Finte I (Waffenlos, Rimkur)"
+            ],
+            "behavior_override": 
+            {
+            "combat": "Die Achaz-Krieger drängen auf die Verteidiger ein und versuchen, ihre Linie zu durchbrechen, um die Schamanen anzugreifen."
             }
         }
     ]
 }
-    
-
